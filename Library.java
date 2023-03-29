@@ -1,15 +1,33 @@
 import java.util.Hashtable;
-/* This is a stub for the Library class */
+/**
+* Constructs a new Library object with no books in its collection.
+*/
 public class Library extends Building {
 
+  /**
+   * The collection of books in the Library, stored as a Hashtable with book titles as keys and availability status as values.
+   */
   private Hashtable<String, Boolean> collection;
 
+  /**
+   * Constructs a Library object with the specified name, address, and number of floors.
+   *
+   * @param name the name of the Library
+   * @param address the address of the Library
+   * @param nFloors the number of floors in the Library
+   */
   public Library(String name, String address, int nFloors) {
     super(name, address, nFloors);
     System.out.println("You have built a library: 📚");
     this.collection = new Hashtable<String, Boolean>();
   }
 
+  /**
+   * Returns true if the given title appears as a key in the Library's collection, false otherwise.
+   *
+   * @param title the title of the book to search for
+   * @return true if the title appears in the collection, false otherwise
+   */
   public boolean containsTitle(String title){
     if (this.collection.containsKey(title)){
       return true;
@@ -19,6 +37,12 @@ public class Library extends Building {
 
   } // returns true if the title appears as a key in the Libary's collection, false otherwise
 
+  /**
+   * Returns true if the book with the given title is available in the Library, false otherwise.
+   *
+   * @param title the title of the book to check availability for
+   * @return true if the book is available, false otherwise
+   */
   public boolean isAvailable(String title){
     if (this.collection.get(title) == true){
       return true;
@@ -28,6 +52,12 @@ public class Library extends Building {
     }
   }
 
+  /**
+   * Adds a book's title to the library's collection.
+   * 
+   * @param title the title of the book to be added
+   * @throws RuntimeException if the book is already in the collection
+   */
   public void addTitle(String title){
     if (this.containsTitle(title) == true){
       throw new RuntimeException(title + " is already in the collection.");
@@ -37,6 +67,13 @@ public class Library extends Building {
     }
   }
   
+  /**
+   * Removes a book from the library's collection.
+   * 
+   * @param title the title of the book to be removed
+   * @return the title of the removed book
+   * @throws RuntimeException if the book is not in the collection
+   */
   public String removeTitle(String title){
     if (this.containsTitle(title) != true){
       throw new RuntimeException(title + " is not in the collection.");
@@ -47,6 +84,9 @@ public class Library extends Building {
     }
   }
 
+  /**
+   * Prints the Library's collection of books and their availability status.
+   */
   public void printCollection() {
     System.out.println("Library collection:");
     if (this.collection.isEmpty()){
@@ -61,6 +101,12 @@ public class Library extends Building {
   }
 }
 
+  /**
+   * Checks out the book with the given title from the Library.
+   * 
+   * @param title the title of the book to be checked out
+   * @throws RuntimeException if the book is not in the collection
+   */
   public void checkOut(String title) {
     if (this.containsTitle(title) != true) {
       throw new RuntimeException(title + " is not in the collection.");
@@ -71,6 +117,12 @@ public class Library extends Building {
     }
   }
 
+  /**
+   * Returns the book with the given title to the Library.
+   * 
+   * @param title the title of the book to be returned
+   * @throws RuntimeException if the book is not in the collection
+   */
   public void returnBook(String title) {
     if (this.containsTitle(title) != true) {
       throw new RuntimeException(title + " is not in the collection.");
@@ -80,6 +132,9 @@ public class Library extends Building {
     }
   }
 
+  /**
+   * Main method for testing the Library class.
+   */
   public static void main(String[] args) {
     Library Neilson = new Library("Neilson Library", "100 Green Street Northampton, MA 01063", 4);
     System.out.println(Neilson);
@@ -91,7 +146,7 @@ public class Library extends Building {
     Neilson.addTitle("The Da Vinci Code");
     Neilson.printCollection();
     try {
-      Neilson.checkOut("ABCD");
+      Neilson.checkOut("Dracula");
     } catch (Exception e) {
       System.out.println(e); // Out of fuel
     }

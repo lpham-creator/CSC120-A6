@@ -1,27 +1,56 @@
 import java.util.ArrayList;
-
-/* This is a stub for the House class */
+/**
+ * A class representing a house.
+ */
 public class House extends Building {
 
+  /**
+   * ArrayList containing the names of the residents of the house.
+   */
   private ArrayList<String> residents;
+  /**
+   * A boolean indicating whether or not the house has a dining room.
+   */
   private boolean hasDiningRoom;
 
+  /**
+   * Constructor for a House object.
+   * 
+   * @param name the name of the house
+   * @param address the address of the house
+   * @param nFloors the number of floors in the house
+   * @param hasDiningRoom a boolean indicating whether or not the house has a dining room
+   */
   public House(String name, String address, int nFloors, boolean hasDiningRoom) {
     super(name, address, nFloors);
     this.residents = new ArrayList<String>();
     this.hasDiningRoom = hasDiningRoom;
   }
 
-  /** Accessor for hasDiningRoom */
+  /**
+   * Accessor method for hasDiningRoom.
+   * 
+   * @return a boolean indicating whether or not the house has a dining room
+   */
   public boolean hasDiningRoom() {
     return this.hasDiningRoom;
   }
 
-  /** Accessor for number of residents */
+  /**
+   * Accessor method for the number of residents in the house.
+   * 
+   * @return the number of residents in the house
+   */
   public int nResidents() {
     return this.residents.size();
   }
 
+  /**
+   * Method to add a new resident to the house.
+   * 
+   * @param name the name of the new resident
+   * @throws RuntimeException if the resident is already in the house
+   */
   public void moveIn(String name) {
     // check if this.residents contains name
     if (this.residents.contains(name)) {
@@ -33,6 +62,11 @@ public class House extends Building {
     System.out.println(name + " has just moved into " + this.getName() + "! Go say hello :-)");
   }
 
+  /**
+   * Returns a String representation of the House object.
+   * 
+   * @return a String representation of the House object
+   */
   public String toString() {
     String description = super.toString();
     description += " There are currently " + this.nResidents() + " people living in this house.";
@@ -46,6 +80,12 @@ public class House extends Building {
     return description;
   }
 
+  /**
+   * Method to check if a given person is a resident of the house.
+   * 
+   * @param person the name of the person to check
+   * @return true if the person is a resident, false otherwise
+   */
   public boolean isResident(String person){
     // check if this.residents contains name
     if (this.residents.contains(person)) {
@@ -55,6 +95,9 @@ public class House extends Building {
     }
   };
 
+  /**
+   * Main method to create and test House objects.
+   */
   public static void main(String[] args) {
     House morrow = new House("Morrow", "The Quad", 4, false);
     System.out.println(morrow);
